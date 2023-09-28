@@ -37,8 +37,8 @@ void loop() {
 
   distance = USS_measure(PIN_TRIG, PIN_ECHO); // read distance
      //거리가 정확하게 200.0 이 되지 않고 204.**, 200.** 등 정확한 200.0이 되지 않기때문에 ==을 이용하지 않고 일부러 오차범위를 5정도 주어서 밝기를 조정하도록 함.
-     // analogWrite 0이 최대 밝기, 255가 최소(꺼짐)이기 때문에 숫자가 작아질 수록 더 밝게 점등된다. 
-     analogWrite(PIN_LED, 220); // 50%, 100% 밝기 외의 나머지 범위에서의 밝기. 150,200,250과의 밝기 구분을 위하여 220정도의 밝기로 어둡게 점등.
+     
+     analogWrite(PIN_LED, 255); // 150,200,250 외의 범위에서는 LED 점등 안함.
   if ((distance >= 100.0) && (distance <= 300.0)) {
     
     if ((distance >= 195.0)&&(distance <= 205.0)) {
@@ -52,7 +52,7 @@ void loop() {
       }
  } 
   else {
-    digitalWrite(PIN_LED, HIGH);   // 거리가 100~300 범위의 밖에 있음. LED OFF(HIGH가 LED꺼진 상태)
+    digitalWrite(PIN_LED, HIGH);   //LED OFF(HIGH가 LED꺼진 상태)
   }
 
   // output the distance to the serial port
